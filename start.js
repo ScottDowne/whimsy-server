@@ -1569,7 +1569,7 @@ function componentSwap(data) {
     ...data,
     feed: {
       ...data.feed,
-      url: "http://localhost:3000/recommendations?url=" + encodeURIComponent(data.feed.url),
+      url: "https://whimsy-server.herokuapp.com/recommendations?url=" + encodeURIComponent(data.feed.url),
     },
   };
 }
@@ -1630,7 +1630,7 @@ const init = async () => {
         path: '/',
         handler: async (request, h) => {
           const url = "https://getpocket.com/v3/newtab/layout?version=1&consumer_key=40249-e88c401e1b1f2242d9e441c4&layout_variant=3-col-7-row-octr";
-          return await awaitFetch("http://localhost:3000/layout?url=" + encodeURIComponent(url));
+          return await awaitFetch("https://whimsy-server.herokuapp.com/layout?url=" + encodeURIComponent(url));
         }
       },
       {
