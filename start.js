@@ -1548,14 +1548,12 @@ const images = [
 require('dotenv').config();
 
 let deadImages = [];
-const port = process.env.PORT || 3000;
-const host = process.env.HOST || "0.0.0.0";
-const protocol = process.env.PROTOCOL || "http";
 
-const server = Hapi.server({port,host: "0.0.0.0"});
-const domain = protocol + "://" + host + ":" + port;
-
-console.log(protocol, host, port, domain);
+const server = Hapi.server({
+  port: process.env.PORT || 3000,
+  host: "0.0.0.0",
+});
+const publicUrl = process.env.URL;
 
 function recSwap(data) {
   let src = images[Math.floor(Math.random()*images.length)];
@@ -1574,7 +1572,7 @@ function componentSwap(data) {
     ...data,
     feed: {
       ...data.feed,
-      url: domain + "/recommendations?url=" + encodeURIComponent(data.feed.url),
+      url: publicUrl + "/recommendations?url=" + encodeURIComponent(data.feed.url),
     },
   };
 }
@@ -1637,7 +1635,7 @@ const init = async () => {
         path: '/',
         handler: async (request, h) => {
           const url = "https://getpocket.com/v3/newtab/layout?version=1&consumer_key=40249-e88c401e1b1f2242d9e441c4&layout_variant=3-col-7-row-octr";
-          return await awaitFetch(domain + "/layout?url=" + encodeURIComponent(url));
+          return await awaitFetch(publicUrl + "/layout?url=" + encodeURIComponent(url));
         }
       },
       {
