@@ -1552,7 +1552,7 @@ const port = process.env.PORT || 3000;
 const host = process.env.HOST || "0.0.0.0";
 const protocol = process.env.PROTOCOL || "http";
 
-const server = Hapi.server({port,host});
+const server = Hapi.server({port,host: "0.0.0.0"});
 const domain = protocol + "://" + host + ":" + port;
 
 console.log(protocol, host, port, domain);
