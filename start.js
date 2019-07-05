@@ -1555,6 +1555,8 @@ const protocol = process.env.PROTOCOL || "http";
 const server = Hapi.server({port,host});
 const domain = protocol + "://" + host + ":" + port;
 
+console.log(protocol, host, port, domain);
+
 function recSwap(data) {
   let src = images[Math.floor(Math.random()*images.length)];
   return {
